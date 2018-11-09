@@ -386,7 +386,7 @@ The document frequency (DF) is no more than a count of how many documents from t
 
 IDF = ln[(N+1)/DF] + 1
 
-In the next table, I've added another column that represents the derived IDF score. You'll notice that that IDF score is higher if the term appears in fewer documents, but that the scale of IDF scores is   
+In the next table, I've added two new columns: one that represents the derived IDF score, and one that multiplies the Count column to derive the final TF-IDF score. You'll notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
 
 <div>
 <table border="1" class="dataframe">
@@ -398,7 +398,6 @@ In the next table, I've added another column that represents the derived IDF sco
 		<th title="DF">DF</th>
 		<th title="Smoothed-IDF">IDF</th>
 		<th title="TF-IDF">TF-IDF</th>
-		<th title="Comments">Comments</th>
     </tr>
 </thead>
 <tbody>
@@ -409,7 +408,6 @@ In the next table, I've added another column that represents the derived IDF sco
 <td>66</td>
 <td>2.70066923</td>
 <td>2.70066923</td>
-<td></td>
 </tr>
 <tr>
 <td>2</td>
@@ -418,7 +416,7 @@ In the next table, I've added another column that represents the derived IDF sco
 <td>189</td>
 <td>1.65833778</td>
 <td>1.65833778</td>
-<td> </td>
+
 </tr>
 <tr>
 <td>3</td>
@@ -427,7 +425,7 @@ In the next table, I've added another column that represents the derived IDF sco
 <td>224</td>
 <td>1.48926145</td>
 <td>1.48926145</td>
-<td> </td>
+
 </tr>
 <tr>
 <td>4</td>
@@ -436,7 +434,7 @@ In the next table, I've added another column that represents the derived IDF sco
 <td>161</td>
 <td>1.81776551</td>
 <td>1.81776551</td>
-<td> </td>
+
 </tr>
 <tr>
 <td>5</td>
@@ -445,7 +443,7 @@ In the next table, I've added another column that represents the derived IDF sco
 <td>80</td>
 <td>2.51091269</td>
 <td>2.51091269</td>
-<td> </td>
+
 </tr>
 <tr>
 <td>6</td>
