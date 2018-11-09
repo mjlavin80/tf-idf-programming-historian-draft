@@ -1,13 +1,13 @@
 shoot for 3-4k words MAX
 
-# Exploratory and Interpretive Strategies with TF-IDF: An Indispensable Text Analysis Method
+# Processing, Exploring, and Analyzing a Document Corpus with TF-IDF
 
 ## Preparation
 
 ### Suggested Prior Skills
 
 - Some familiarity with Python or a similar programming language. Code for this lesson is written in Python 3.6, but TF-IDF is available in many versions of Python and other programming languages.
-- Familiarity with Excel or an equivalent spreadsheet application if you wish to examine the linked .csv files.
+- Familiarity with Excel or an equivalent spreadsheet application if you wish to examine the linked spreadsheet files.
 
 ### Before You Begin
 
@@ -163,7 +163,10 @@ In this version of the list, "she" and "her" have both moved up. "cochrane" rema
 
 ### How the Algorithm Works
 
-The general concept of TF-IDF becomes more complex when we consider the specific algorithmic steps that any particular flavor of TF-IDF might take. Before I begin discussing these complexities, however, I must cover the traditional TF-IDF algorithm's operations. This section of the lesson goes back to the Nellie Bly obituary and converts the top ten term counts into TF-IDF scores. Addition, multiplication, and division are the only mathematical operations necessary to follow along. You can do them by hand or with a calculator. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts from above, but this time we have a second column that represents the number of documents in which each term can be found.
+TF-IDF can be implemented in many flavors, some more complex than others. Before I begin discussing these complexities, however, I would like to trace the algorithmic operations of one particular version. To this end, we will go back to the Nellie Bly obituary and convert the top ten term counts into TF-IDF scores using the same steps that were used to create the above TF-IDF example. These steps parallel scikit learn's TF-IDF implementation. 
+
+
+Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must perform calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts from above, but this time we have a second column that represents the number of documents in which each term can be found.
 
 <div>
 <table border="1" class="dataframe">
