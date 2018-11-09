@@ -452,7 +452,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>310</td>
 <td>1.16556894</td>
 <td>1.16556894</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>7</td>
@@ -461,7 +461,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>277</td>
 <td>1.27774073</td>
 <td>1.27774073</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>8</td>
@@ -470,7 +470,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>352</td>
 <td>1.03889379</td>
 <td>1.03889379</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>9</td>
@@ -479,7 +479,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>364</td>
 <td>1.00546449</td>
 <td>13.07103843</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>10</td>
@@ -497,7 +497,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>357</td>
 <td>1.02482886</td>
 <td>2.04965772</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>12</td>
@@ -524,7 +524,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>362</td>
 <td>1.01095901</td>
 <td>8.08767211</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>15</td>
@@ -578,7 +578,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>332</td>
 <td>1.09721936</td>
 <td>1.09721936</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>21</td>
@@ -596,7 +596,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>241</td>
 <td>1.41642412</td>
 <td>1.41642412</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>23</td>
@@ -632,7 +632,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>342</td>
 <td>1.06763140</td>
 <td>1.06763140</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>27</td>
@@ -641,7 +641,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>343</td>
 <td>1.06472019</td>
 <td>1.06472019</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>28</td>
@@ -650,7 +650,7 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>349</td>
 <td>1.04742869</td>
 <td>3.14228608</td>
-<td>DF over max</td>
+
 </tr>
 <tr>
 <td>29</td>
@@ -659,7 +659,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>223</td>
 <td>1.49371580</td>
 <td>1.49371580</td>
-<td></td>
 </tr>
 <tr>
 <td>30</td>
@@ -668,7 +667,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>89</td>
 <td>2.40555218</td>
 <td>2.40555218</td>
-<td></td>
 </tr>
 </tbody>
 </table>
