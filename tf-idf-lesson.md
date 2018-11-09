@@ -649,7 +649,7 @@ Note also that the TF-IDF column, according to this version of the algorithm, ca
 
 Scikit-Learn version
 
-```
+```python
 # this bit of code uses the os.walk method from Python's os module to generate a list 
 # of all the .txt files in the 'txt' folder
 # os.walk returns the root directory of a folder, a list of all subfolders, 
