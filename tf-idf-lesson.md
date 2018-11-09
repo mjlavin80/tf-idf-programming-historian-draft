@@ -1,5 +1,3 @@
-shoot for 3-4k words MAX
-
 # Processing, Exploring, and Analyzing a Document Corpus with TF-IDF
 
 ## Preparation
