@@ -184,7 +184,208 @@ In this version of the list, "she" and "her" have both moved up. "cochrane" rema
 TF-IDF can be implemented in many flavors, some more complex than others. Before I begin discussing these complexities, however, I would like to trace the algorithmic operations of one particular version. To this end, we will go back to the Nellie Bly obituary and convert the top ten term counts into TF-IDF scores using the same steps that were used to create the above TF-IDF example. These steps parallel scikit learn's TF-IDF implementation. 
 
 
-Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must perform calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts from above, but this time we have a second column that represents the number of documents in which each term can be found.
+Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must perform calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts for the first thirty words, in alphabetical order, from Bly's obituary, but this version has a second column that represents the number of documents in which each term can be found.
+
+<div>
+<table border="1" class="dataframe">
+<thead>
+	<tr style="text-align: right;">
+		<th title="Term">Term</th>
+		<th title="Count">Count</th>
+		<th title="DF">DF</th>
+		
+    </tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>afternoon</td>
+<td>1</td>
+<td>66</td>
+</tr>
+<tr>
+<td>2</td>
+<td>against</td>
+<td>1</td>
+<td>189</td>
+</tr>
+<tr>
+<td>3</td>
+<td>age</td>
+<td>1</td>
+<td>224</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ago</td>
+<td>1</td>
+<td>161</td>
+</tr>
+<tr>
+<td>5</td>
+<td>air</td>
+<td>1</td>
+<td>80</td>
+</tr>
+<tr>
+<td>6</td>
+<td>all</td>
+<td>1</td>
+<td>310</td>
+</tr>
+<tr>
+<td>7</td>
+<td>american</td>
+<td>1</td>
+<td>277</td>
+</tr>
+<tr>
+<td>8</td>
+<td>an</td>
+<td>1</td>
+<td>352</td>
+</tr>
+<tr>
+<td>9</td>
+<td>and</td>
+<td>13</td>
+<td>364</td>
+</tr>
+<tr>
+<td>10</td>
+<td>around</td>
+<td>2</td>
+<td>149</td>
+</tr>
+<tr>
+<td>11</td>
+<td>as</td>
+<td>2</td>
+<td>357</td>
+</tr>
+<tr>
+<td>12</td>
+<td>ascension</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>13</td>
+<td>asylum</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14</td>
+<td>at</td>
+<td>8</td>
+<td>362</td>
+</tr>
+<tr>
+<td>15</td>
+<td>avenue</td>
+<td>2</td>
+<td>68</td>
+</tr>
+<tr>
+<td>16</td>
+<td>balloon</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>17</td>
+<td>bankruptcy</td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>18</td>
+<td>barrel</td>
+<td>1</td>
+<td>7</td>
+</tr>
+<tr>
+<td>19</td>
+<td>baxter</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>20</td>
+<td>be</td>
+<td>1</td>
+<td>332</td>
+</tr>
+<tr>
+<td>21</td>
+<td>beat</td>
+<td>1</td>
+<td>33</td>
+</tr>
+<tr>
+<td>22</td>
+<td>began</td>
+<td>1</td>
+<td>241</td>
+</tr>
+<tr>
+<td>23</td>
+<td>bell</td>
+<td>1</td>
+<td>24</td>
+</tr>
+<tr>
+<td>24</td>
+<td>bly</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>25</td>
+<td>body</td>
+<td>1</td>
+<td>112</td>
+</tr>
+<tr>
+<td>26</td>
+<td>born</td>
+<td>1</td>
+<td>342</td>
+</tr>
+<tr>
+<td>27</td>
+<td>but</td>
+<td>1</td>
+<td>343</td>
+</tr>
+<tr>
+<td>28</td>
+<td>by</td>
+<td>3</td>
+<td>349</td>
+</tr>
+<tr>
+<td>29</td>
+<td>career</td>
+<td>1</td>
+<td>223</td>
+</tr>
+<tr>
+<td>30</td>
+<td>character</td>
+<td>1</td>
+<td>89</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+The document frequency (DF) is no more than a count of how many documents from the corpus each word appears in. To convert these document counts, to an inverse document frequency, the most direct formula would be N/DF, where N represents the total number of documents in the corpus. However, many implementations (including the original TF-IDF implementation) normalize the results with additional operations. For example, scikit-learn's implementation calculates N as N+1, then calculates the natural logarithm of (N+1)/DF, and then adds 1 to the final result. To summarize this IDF equation, then: 
+
+IDF = ln[(N+1)/DF] + 1
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -254,7 +455,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>6</td>
+<td>7</td>
 <td>american</td>
 <td>1</td>
 <td>277</td>
@@ -263,7 +464,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>7</td>
+<td>8</td>
 <td>an</td>
 <td>1</td>
 <td>352</td>
@@ -272,7 +473,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>8</td>
+<td>9</td>
 <td>and</td>
 <td>13</td>
 <td>364</td>
@@ -281,7 +482,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>9</td>
+<td>10</td>
 <td>around</td>
 <td>2</td>
 <td>149</td>
@@ -290,7 +491,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>10</td>
+<td>11</td>
 <td>as</td>
 <td>2</td>
 <td>357</td>
@@ -299,7 +500,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>11</td>
+<td>12</td>
 <td>ascension</td>
 <td>1</td>
 <td>6</td>
@@ -308,7 +509,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>12</td>
+<td>13</td>
 <td>asylum</td>
 <td>1</td>
 <td>2</td>
@@ -317,7 +518,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>13</td>
+<td>14</td>
 <td>at</td>
 <td>8</td>
 <td>362</td>
@@ -326,7 +527,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>14</td>
+<td>15</td>
 <td>avenue</td>
 <td>2</td>
 <td>68</td>
@@ -335,7 +536,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>15</td>
+<td>16</td>
 <td>balloon</td>
 <td>1</td>
 <td>2</td>
@@ -344,7 +545,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>16</td>
+<td>17</td>
 <td>bankruptcy</td>
 <td>1</td>
 <td>8</td>
@@ -353,7 +554,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>17</td>
+<td>18</td>
 <td>barrel</td>
 <td>1</td>
 <td>7</td>
@@ -362,7 +563,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>18</td>
+<td>19</td>
 <td>baxter</td>
 <td>1</td>
 <td>4</td>
@@ -371,7 +572,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>19</td>
+<td>20</td>
 <td>be</td>
 <td>1</td>
 <td>332</td>
@@ -380,7 +581,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>20</td>
+<td>21</td>
 <td>beat</td>
 <td>1</td>
 <td>33</td>
@@ -389,7 +590,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>21</td>
+<td>22</td>
 <td>began</td>
 <td>1</td>
 <td>241</td>
@@ -398,7 +599,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>22</td>
+<td>23</td>
 <td>bell</td>
 <td>1</td>
 <td>24</td>
@@ -407,7 +608,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>23</td>
+<td>24</td>
 <td>bly</td>
 <td>2</td>
 <td>1</td>
@@ -416,7 +617,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>24</td>
+<td>25</td>
 <td>body</td>
 <td>1</td>
 <td>112</td>
@@ -425,7 +626,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>25</td>
+<td>26</td>
 <td>born</td>
 <td>1</td>
 <td>342</td>
@@ -434,7 +635,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>25</td>
+<td>27</td>
 <td>but</td>
 <td>1</td>
 <td>343</td>
@@ -443,7 +644,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>26</td>
+<td>28</td>
 <td>by</td>
 <td>3</td>
 <td>349</td>
@@ -452,7 +653,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
-<td>27</td>
+<td>29</td>
 <td>career</td>
 <td>1</td>
 <td>223</td>
@@ -461,7 +662,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td></td>
 </tr>
 <tr>
-<td>28</td>
+<td>30</td>
 <td>character</td>
 <td>1</td>
 <td>89</td>
@@ -473,13 +674,6 @@ Addition, multiplication, and division are the primary mathematical operations n
 </table>
 </div>
 
-- counts for Bly document, N features 
-- run first in Python to use as a basis
-- converted to freqs
-- log value conversion
-- doc freq column
-- final result
-- influence of numerator and denominator - rare vs. common words
 
 ### How to Run it in Python 3
 
