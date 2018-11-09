@@ -190,6 +190,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <table border="1" class="dataframe">
 <thead>
 	<tr style="text-align: right;">
+		<th title="Index">Index</th>
 		<th title="Term">Term</th>
 		<th title="Count">Count</th>
 		<th title="DF">DF</th>
@@ -385,16 +386,17 @@ The document frequency (DF) is no more than a count of how many documents from t
 
 IDF = ln[(N+1)/DF] + 1
 
-
+In the next table, I've added another column that represents the derived IDF score. You'll notice that that IDF score is higher if the term appears in fewer documents, but that the scale of IDF scores is   
 
 <div>
 <table border="1" class="dataframe">
 <thead>
 	<tr style="text-align: right;">
+		<th title="Index">Index</th>
 		<th title="Term">Term</th>
 		<th title="Count">Count</th>
 		<th title="DF">DF</th>
-		<th title="Smoothed-IDF">Smoothed-IDF</th>
+		<th title="Smoothed-IDF">IDF</th>
 		<th title="TF-IDF">TF-IDF</th>
 		<th title="Comments">Comments</th>
     </tr>
