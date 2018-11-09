@@ -37,51 +37,61 @@ To understand how a term can be frequent but not distinct, or vice versa, let's 
 </thead>
 <tbody>
 	<tr>
+<td></td>
 		<td>1</td>
 		<td>the</td>
 		<td>21</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>2</td>
 		<td>of</td>
 		<td>16</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>3</td>
 		<td>her</td>
 		<td>15</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>4</td>
 		<td>in</td>
 		<td>14</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>5</td>
 		<td>and</td>
 		<td>13</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>6</td>
 		<td>she</td>
 		<td>10</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>7</td>
 		<td>at</td>
 		<td>8</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>8</td>
 		<td>cochrane</td>
 		<td>4</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>9</td>
 		<td>was</td>
 		<td>4</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>10</td>
 		<td>to</td>
 		<td>4</td>
@@ -103,51 +113,61 @@ After looking at this list, imagine trying to discern information about the obit
 </thead>
 <tbody>
 	<tr>
+<td></td>
 		<td>1</td>
 		<td>cochrane</td>
 		<td>24.85</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>2</td>
 		<td>her</td>
 		<td>22.74</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>3</td>
 		<td>she</td>
 		<td>16.22</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>4</td>
 		<td>seaman</td>
 		<td>14.88</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>5</td>
 		<td>bly</td>
 		<td>12.42</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>6</td>
 		<td>nellie</td>
 		<td>9.92</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>7</td>
 		<td>mark</td>
 		<td>8.64</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>8</td>
 		<td>ironclad</td>
 		<td>6.21</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>9</td>
 		<td>plume</td>
 		<td>6.21</td>
 	</tr>
 	<tr>
+<td></td>
 		<td>10</td>
 		<td>vexations</td>
 		<td>6.21</td>
@@ -180,14 +200,16 @@ Addition, multiplication, and division are the primary mathematical operations n
 </thead>
 <tbody>
 <tr>
+<td>1</td>
 <td>afternoon</td>
 <td>1</td>
 <td>66</td>
 <td>2.70066923</td>
 <td>2.70066923</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>2</td>
 <td>against</td>
 <td>1</td>
 <td>189</td>
@@ -196,6 +218,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td> </td>
 </tr>
 <tr>
+<td>3</td>
 <td>age</td>
 <td>1</td>
 <td>224</td>
@@ -204,6 +227,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td> </td>
 </tr>
 <tr>
+<td>4</td>
 <td>ago</td>
 <td>1</td>
 <td>161</td>
@@ -212,6 +236,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td> </td>
 </tr>
 <tr>
+<td>5</td>
 <td>air</td>
 <td>1</td>
 <td>80</td>
@@ -220,6 +245,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td> </td>
 </tr>
 <tr>
+<td>6</td>
 <td>all</td>
 <td>1</td>
 <td>310</td>
@@ -228,6 +254,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>6</td>
 <td>american</td>
 <td>1</td>
 <td>277</td>
@@ -236,6 +263,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>7</td>
 <td>an</td>
 <td>1</td>
 <td>352</td>
@@ -244,6 +272,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>8</td>
 <td>and</td>
 <td>13</td>
 <td>364</td>
@@ -252,14 +281,16 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>9</td>
 <td>around</td>
 <td>2</td>
 <td>149</td>
 <td>1.89472655</td>
 <td>3.78945311</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>10</td>
 <td>as</td>
 <td>2</td>
 <td>357</td>
@@ -268,22 +299,25 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>11</td>
 <td>ascension</td>
 <td>1</td>
 <td>6</td>
 <td>4.95945170</td>
 <td>4.95945170</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>12</td>
 <td>asylum</td>
 <td>1</td>
 <td>2</td>
 <td>5.80674956</td>
 <td>5.80674956</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>13</td>
 <td>at</td>
 <td>8</td>
 <td>362</td>
@@ -292,46 +326,52 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>14</td>
 <td>avenue</td>
 <td>2</td>
 <td>68</td>
 <td>2.67125534</td>
 <td>5.34251069</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>15</td>
 <td>balloon</td>
 <td>1</td>
 <td>2</td>
 <td>5.80674956</td>
 <td>5.80674956</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>16</td>
 <td>bankruptcy</td>
 <td>1</td>
 <td>8</td>
 <td>4.70813727</td>
 <td>4.70813727</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>17</td>
 <td>barrel</td>
 <td>1</td>
 <td>7</td>
 <td>4.82592031</td>
 <td>4.82592031</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>18</td>
 <td>baxter</td>
 <td>1</td>
 <td>4</td>
 <td>5.29592394</td>
 <td>5.29592394</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>19</td>
 <td>be</td>
 <td>1</td>
 <td>332</td>
@@ -340,14 +380,16 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>20</td>
 <td>beat</td>
 <td>1</td>
 <td>33</td>
 <td>3.37900132</td>
 <td>3.37900132</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>21</td>
 <td>began</td>
 <td>1</td>
 <td>241</td>
@@ -356,30 +398,34 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>22</td>
 <td>bell</td>
 <td>1</td>
 <td>24</td>
 <td>3.68648602</td>
 <td>3.68648602</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>23</td>
 <td>bly</td>
 <td>2</td>
 <td>1</td>
 <td>6.21221467</td>
 <td>12.42442933</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>24</td>
 <td>body</td>
 <td>1</td>
 <td>112</td>
 <td>2.17797403</td>
 <td>2.17797403</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>25</td>
 <td>born</td>
 <td>1</td>
 <td>342</td>
@@ -388,6 +434,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>25</td>
 <td>but</td>
 <td>1</td>
 <td>343</td>
@@ -396,6 +443,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>26</td>
 <td>by</td>
 <td>3</td>
 <td>349</td>
@@ -404,20 +452,22 @@ Addition, multiplication, and division are the primary mathematical operations n
 <td>DF over max</td>
 </tr>
 <tr>
+<td>27</td>
 <td>career</td>
 <td>1</td>
 <td>223</td>
 <td>1.49371580</td>
 <td>1.49371580</td>
-<td> </td>
+<td></td>
 </tr>
 <tr>
+<td>28</td>
 <td>character</td>
 <td>1</td>
 <td>89</td>
 <td>2.40555218</td>
 <td>2.40555218</td>
-<td> </td>
+<td></td>
 </tr>
 </tbody>
 </table>
