@@ -106,68 +106,58 @@ After looking at this list, imagine trying to discern information about the obit
 <table border="1" class="dataframe">
 <thead>
 	<tr style="text-align: right;">
-		<th title="Rank">Rank</th>
+		<th title="Index">Rank</th>
 	    <th title="Term">Term</th>
 	    <th title="Count">Count</th>
     </tr>
 </thead>
 <tbody>
 	<tr>
-<td></td>
 		<td>1</td>
 		<td>cochrane</td>
 		<td>24.85</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>2</td>
 		<td>her</td>
 		<td>22.74</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>3</td>
 		<td>she</td>
 		<td>16.22</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>4</td>
 		<td>seaman</td>
 		<td>14.88</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>5</td>
 		<td>bly</td>
 		<td>12.42</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>6</td>
 		<td>nellie</td>
 		<td>9.92</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>7</td>
 		<td>mark</td>
 		<td>8.64</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>8</td>
 		<td>ironclad</td>
 		<td>6.21</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>9</td>
 		<td>plume</td>
 		<td>6.21</td>
 	</tr>
 	<tr>
-<td></td>
 		<td>10</td>
 		<td>vexations</td>
 		<td>6.21</td>
@@ -416,7 +406,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>189</td>
 <td>1.65833778</td>
 <td>1.65833778</td>
-
 </tr>
 <tr>
 <td>3</td>
