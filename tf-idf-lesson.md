@@ -375,7 +375,11 @@ The document frequency (DF) is no more than a count of how many documents from t
 
 ### IDF = ln [ ( N + 1 ) / DF ] + 1
 
-In the next table, I've added two new columns: one that represents the derived IDF score, and one that multiplies the Count column to derive the final TF-IDF score. You'll notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
+Once IDF is calculated, TF-IDF is no more than TF multiplied by IDF. In the next table, I've added two new columns: one that represents the derived IDF score based on the mathematical operations I've just described, and one that multiplies the Count column to derive the final TF-IDF score. 
+
+Notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
+
+Note also that the TF-IDF column, according to this version of the algorithm, cannot be lower than the count. This effect is also the result of our normalization method; adding 1 to the final IDF value ensures that we will never multiply our Count columns by a number smaller than one.    
 
 <div>
 <table border="1" class="dataframe">
@@ -634,17 +638,45 @@ In the next table, I've added two new columns: one that represents the derived I
 </table>
 </div>
 
+- These tables collectively represent one flavor of TF-IDF. Of course
+
+- We want to run on all terms in all documents and see which ones are the biggest
+
+- Download the file
+
+
 ### How to Run it in Python 3
 
 Scikit-Learn version
 
-There are several Python libraries that include 
+```
+# this bit of code uses the os.walk method from Python's os module to generate a list 
+# of all the .txt files in the 'txt' folder
+# os.walk returns the root directory of a folder, a list of all subfolders, 
+# and a list of all files in the directory, including all files in its subdirectories 
+# I then loop through the list of files and use the endsith method to verify I'm finding only text files
+# I then append each text file name to the list called all_txt_files
+# Finally, I return the length of all_txt_files to verify that I've found 366 file names
+# This loop-and-append approach is very common in Python. You might even call it Pythonic.
+
+import os
+all_txt_files =[]
+for root, dirs, files in os.walk("txt"):
+    for file in files:
+        if file.endswith(".txt"):
+            all_txt_files.append(os.path.join(root, file))
+n_files = len(all_txt_files)
+all_txt_files[365]
+```
+
+Settings stopwords, etc. 
+
 
 ### TF-IDF Compared with Alternative Techniques
 
 TF-IDF can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
 
-### Potential Variations of TF-IDF
+### Potential Variations of TF-IDF (Features)
 
 In this section, I want to discuss a Fivethirtyeight.com post from March 2016 called "These Are The Phrases Each GOP Candidate Repeats Most"(https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/). It's a relatively straightforward post, but the visualization uses a modified TF-IDF that takes N-grams and performs the inverse-document frequency calculation on phrases rather than just words. I will walk readers through the process of adapting Fivethirtyeight's code to the obituary corpus I'm using in the rest of the tutorial. The result is, I think, interesting, and it demonstrates how the IDF operation can be extended. 
 
