@@ -373,7 +373,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 
 The document frequency (DF) is no more than a count of how many documents from the corpus each word appears in. To convert these document counts, to an inverse document frequency, the most direct formula would be N/DF, where N represents the total number of documents in the corpus. However, many implementations (including the original TF-IDF implementation) normalize the results with additional operations. For example, scikit-learn's implementation calculates N as N+1, then calculates the natural logarithm of (N+1)/DF, and then adds 1 to the final result. To summarize this IDF equation, then: 
 
-IDF = ln[(N+1)/DF] + 1
+### IDF = ln [ ( N + 1 ) / DF ] + 1
 
 In the next table, I've added two new columns: one that represents the derived IDF score, and one that multiplies the Count column to derive the final TF-IDF score. You'll notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
 
