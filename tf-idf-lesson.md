@@ -184,7 +184,6 @@ Addition, multiplication, and division are the primary mathematical operations n
 		<th title="Term">Term</th>
 		<th title="Count">Count</th>
 		<th title="DF">DF</th>
-		
     </tr>
 </thead>
 <tbody>
