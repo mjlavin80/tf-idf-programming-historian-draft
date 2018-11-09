@@ -425,7 +425,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>224</td>
 <td>1.48926145</td>
 <td>1.48926145</td>
-
 </tr>
 <tr>
 <td>4</td>
@@ -434,7 +433,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>161</td>
 <td>1.81776551</td>
 <td>1.81776551</td>
-
 </tr>
 <tr>
 <td>5</td>
@@ -443,7 +441,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>80</td>
 <td>2.51091269</td>
 <td>2.51091269</td>
-
 </tr>
 <tr>
 <td>6</td>
@@ -452,7 +449,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>310</td>
 <td>1.16556894</td>
 <td>1.16556894</td>
-
 </tr>
 <tr>
 <td>7</td>
@@ -461,7 +457,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>277</td>
 <td>1.27774073</td>
 <td>1.27774073</td>
-
 </tr>
 <tr>
 <td>8</td>
@@ -470,7 +465,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>352</td>
 <td>1.03889379</td>
 <td>1.03889379</td>
-
 </tr>
 <tr>
 <td>9</td>
@@ -479,7 +473,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>364</td>
 <td>1.00546449</td>
 <td>13.07103843</td>
-
 </tr>
 <tr>
 <td>10</td>
@@ -488,7 +481,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>149</td>
 <td>1.89472655</td>
 <td>3.78945311</td>
-<td></td>
 </tr>
 <tr>
 <td>11</td>
@@ -497,7 +489,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>357</td>
 <td>1.02482886</td>
 <td>2.04965772</td>
-
 </tr>
 <tr>
 <td>12</td>
@@ -506,7 +497,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>6</td>
 <td>4.95945170</td>
 <td>4.95945170</td>
-<td></td>
 </tr>
 <tr>
 <td>13</td>
@@ -515,7 +505,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>2</td>
 <td>5.80674956</td>
 <td>5.80674956</td>
-<td></td>
 </tr>
 <tr>
 <td>14</td>
@@ -524,7 +513,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>362</td>
 <td>1.01095901</td>
 <td>8.08767211</td>
-
 </tr>
 <tr>
 <td>15</td>
@@ -533,7 +521,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>68</td>
 <td>2.67125534</td>
 <td>5.34251069</td>
-<td></td>
 </tr>
 <tr>
 <td>16</td>
@@ -542,7 +529,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>2</td>
 <td>5.80674956</td>
 <td>5.80674956</td>
-<td></td>
 </tr>
 <tr>
 <td>17</td>
@@ -551,7 +537,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>8</td>
 <td>4.70813727</td>
 <td>4.70813727</td>
-<td></td>
 </tr>
 <tr>
 <td>18</td>
@@ -560,7 +545,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>7</td>
 <td>4.82592031</td>
 <td>4.82592031</td>
-<td></td>
 </tr>
 <tr>
 <td>19</td>
@@ -569,7 +553,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>4</td>
 <td>5.29592394</td>
 <td>5.29592394</td>
-<td></td>
 </tr>
 <tr>
 <td>20</td>
@@ -578,7 +561,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>332</td>
 <td>1.09721936</td>
 <td>1.09721936</td>
-
 </tr>
 <tr>
 <td>21</td>
@@ -587,7 +569,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>33</td>
 <td>3.37900132</td>
 <td>3.37900132</td>
-<td></td>
 </tr>
 <tr>
 <td>22</td>
@@ -596,7 +577,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>241</td>
 <td>1.41642412</td>
 <td>1.41642412</td>
-
 </tr>
 <tr>
 <td>23</td>
@@ -605,7 +585,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>24</td>
 <td>3.68648602</td>
 <td>3.68648602</td>
-<td></td>
 </tr>
 <tr>
 <td>24</td>
@@ -614,7 +593,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>1</td>
 <td>6.21221467</td>
 <td>12.42442933</td>
-<td></td>
 </tr>
 <tr>
 <td>25</td>
@@ -623,7 +601,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>112</td>
 <td>2.17797403</td>
 <td>2.17797403</td>
-<td></td>
 </tr>
 <tr>
 <td>26</td>
@@ -632,7 +609,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>342</td>
 <td>1.06763140</td>
 <td>1.06763140</td>
-
 </tr>
 <tr>
 <td>27</td>
@@ -641,7 +617,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>343</td>
 <td>1.06472019</td>
 <td>1.06472019</td>
-
 </tr>
 <tr>
 <td>28</td>
@@ -650,7 +625,6 @@ In the next table, I've added two new columns: one that represents the derived I
 <td>349</td>
 <td>1.04742869</td>
 <td>3.14228608</td>
-
 </tr>
 <tr>
 <td>29</td>
@@ -671,7 +645,6 @@ In the next table, I've added two new columns: one that represents the derived I
 </tbody>
 </table>
 </div>
-
 
 ### How to Run it in Python 3
 
