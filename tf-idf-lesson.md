@@ -4,7 +4,8 @@
 
 ### Suggested Prior Skills
 
-- Some familiarity with Python or a similar programming language. Code for this lesson is written in Python 3.6, but TF-IDF is available in many versions of Python and other programming languages.
+- Advanced beginner familiarity with Python or a similar programming language. The precise level of code literacy or familiarity recommended is hard to estimate, but you will want to be comfortable with basic types and operations. Code for this lesson is written in Python 3.6, but TF-IDF is available in many versions of Python and other programming languages. To get the most out of this lesson, it is recommended that you work your way through something like Codeacademy's Introduction to Python course, or that you complete some of the introductory Python lessons on _The Programming Historian_. 
+- In lieu of the above recommendation, you should review Pythons basic types (string, integer, float, list, tuple, dictionary), working with variables, writing loops in Python, and working with object classes/instances.
 - Familiarity with Excel or an equivalent spreadsheet application if you wish to examine the linked spreadsheet files.
 
 ### Before You Begin
@@ -174,7 +175,7 @@ In this version of the list, "she" and "her" have both moved up. "cochrane" rema
 TF-IDF can be implemented in many flavors, some more complex than others. Before I begin discussing these complexities, however, I would like to trace the algorithmic operations of one particular version. To this end, we will go back to the Nellie Bly obituary and convert the top ten term counts into TF-IDF scores using the same steps that were used to create the above TF-IDF example. These steps parallel scikit learn's TF-IDF implementation. 
 
 
-Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must perform calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts for the first thirty words, in alphabetical order, from Bly's obituary, but this version has a second column that represents the number of documents in which each term can be found.
+Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts for the first thirty words, in alphabetical order, from Bly's obituary, but this version has a second column that represents the number of documents in which each term can be found.
 
 <div>
 <table border="1" class="dataframe">
@@ -375,9 +376,7 @@ The document frequency (DF) is no more than a count of how many documents from t
 
 ### IDF = ln [ ( N + 1 ) / DF ] + 1
 
-Once IDF is calculated, TF-IDF is no more than TF multiplied by IDF. In the next table, I've added two new columns: one that represents the derived IDF score based on the mathematical operations I've just described, and one that multiplies the Count column to derive the final TF-IDF score. 
-
-Notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
+Once IDF is calculated, TF-IDF is no more than TF multiplied by IDF. In the next table, I've added two new columns: one that represents the derived IDF score based on the mathematical operations I've just described, and one that multiplies the Count column to derive the final TF-IDF score. Notice that that IDF score is higher if the term appears in fewer documents, but that the scale of visible IDF scores is 1 to 6. Different normalization schemes would produce different scales. 
 
 Note also that the TF-IDF column, according to this version of the algorithm, cannot be lower than the count. This effect is also the result of our normalization method; adding 1 to the final IDF value ensures that we will never multiply our Count columns by a number smaller than one.    
 
@@ -638,36 +637,76 @@ Note also that the TF-IDF column, according to this version of the algorithm, ca
 </table>
 </div>
 
-- These tables collectively represent one flavor of TF-IDF. Of course
-
-- We want to run on all terms in all documents and see which ones are the biggest
-
-- Download the file
-
+These tables collectively represent one particular version of the TF-IDF transformation. Of course, TF-IDF is generally calculated for all terms in all of the documents in your corpus so that you can see which terms in each document have the highest TF-IDF scores. To get a better sense of the what your output might look like after executing such an operation, download and open the full Excel file for Bly's obituary. 
 
 ### How to Run it in Python 3
 
-Scikit-Learn version
+In this section of the lesson, I will walk through the steps I followed to calculate TF-IDF scores for all terms in all documents in the lesson's obituary corpus. If you would like to follow along, you can download the lesson files and run a Jupyter Notebook from the inside the lesson folder. As with any programming language, there's more than one way to do each of these steps. However, the methods I've chosen all attempt to model one of two things: (1) How to break a humanities computing problem down into the smallest possible chunk and (2) how problems are often approached in Python. There's no law that says you can't write java-ish code in Python, but many people use Python specifically because it makes some things easier than others. 
+
+My first block of code is designed to retrieve all the filenames for '.txt' files in the 'txt' folder. The following lines of code import the ```os``` library and use the ```os.walk()``` method from Python's to generate a list of all the files in the 'txt' folder that end with '.txt'. ```os.walk()``` returns the root directory of a folder, a list of all subfolders, and a list of all files in the directory, including all files in its subdirectories. 
+
+Once I've loaded a list of file names, I can loop through the list of files and use the ```endsith()``` method to verify I'm finding only '.txt' files. Every time a match is found, I append each text file name to the list called all_txt_files. Finally, I return the length of all_txt_files to verify that I've found 366 file names. This loop-and-append approach is very common in Python. You might even call it _Pythonic_.
 
 ```python
-# this bit of code uses the os.walk method from Python's os module to generate a list 
-# of all the .txt files in the 'txt' folder
-# os.walk returns the root directory of a folder, a list of all subfolders, 
-# and a list of all files in the directory, including all files in its subdirectories 
-# I then loop through the list of files and use the endsith method to verify I'm finding only text files
-# I then append each text file name to the list called all_txt_files
-# Finally, I return the length of all_txt_files to verify that I've found 366 file names
-# This loop-and-append approach is very common in Python. You might even call it Pythonic.
-
 import os
 all_txt_files =[]
 for root, dirs, files in os.walk("txt"):
     for file in files:
         if file.endswith(".txt"):
             all_txt_files.append(os.path.join(root, file))
+# counts the length of the list
 n_files = len(all_txt_files)
-all_txt_files[365]
+print(n_files)
 ```
+
+Python's ```os.walk()``` returns a file list in arbitrary order, but we want our files to count up by day and month since there's on file for every day and month of a year. Let's use the ```sort``` method to put the files in ascending numerical order and print the first file to make sure it's '0101.txt'.
+
+```python
+all_txt_files.sort()
+all_txt_files[0]
+```
+
+Next, we can use our list of file names to load each file and convert them to a format that Python can read and understand as text. In this block of code, I do another loop-and-append operation. This time, I loop my list of file names and open each file. I then use Python's ```read()``` method to convert each text file to a string (```str```), which is how Python knows to think of the data as text. I append each string, one by one, to a new list called all_docs. Crucially, the string objects in the all_docs list have the same order as the file names in the all_txt_files list. 
+
+```python
+all_docs = []
+for i in all_txt_files:
+    with open(i) as f:
+        txt = f.read()
+    all_docs.append(txt)
+```
+
+
+```python
+#import the TfidfVectorizer from scikit-learn.  
+from sklearn.feature_extraction.text import TfidfVectorizer
+# TfidfVectorizer is a class, so I instantiate it with specific pararmeters as 'vectorizer'
+# I then run the object's fit_transform() method on my list of strings (all_docs)
+# The stored variable X is output of the fit_transform() method 
+vectorizer = TfidfVectorizer(max_df=.65, min_df=1, stop_words=None, use_idf=True, norm=None)
+X = vectorizer.fit_transform(all_docs)
+# this line of code verifies that the numpy array represents the same number of 
+# documents that we have in the file list
+len(myarray)
+```
+
+
+```python
+# The fit_transform() method converts the list of strings to a sparse matrix of TF-IDF values
+# The toarray method converts a numpy array, which makes it easier to indpect every values including the zeros 
+myarray = X.toarray()
+```
+
+```python
+#make the output folder
+doc_0_feature_scores = list(zip(vectorizer.get_feature_names(), myarray[0]))
+# loop each item in the array
+# construct a dataframe
+# output to a csv
+
+```
+
+Scikit-Learn version
 
 Settings stopwords, etc. 
 
