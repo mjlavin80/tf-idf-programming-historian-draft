@@ -637,11 +637,11 @@ Note also that the TF-IDF column, according to this version of the algorithm, ca
 </table>
 </div>
 
-These tables collectively represent one particular version of the TF-IDF transformation. Of course, TF-IDF is generally calculated for all terms in all of the documents in your corpus so that you can see which terms in each document have the highest TF-IDF scores. To get a better sense of the what your output might look like after executing such an operation, download and open the full Excel file for Bly's obituary. 
+These tables collectively represent one particular version of the TF-IDF transformation. Of course, TF-IDF is generally calculated for all terms in all of the documents in your corpus so that you can see which terms in each document have the highest TF-IDF scores. To get a better sense of the what your output might look like after executing such an operation, download and open the full Excel file for Bly's obituary by visiting https://github.com/mjlavin80/tf-idf-programming-historian/blob/master/bly_tfidf_all.xlsx. 
 
 ### How to Run it in Python 3
 
-In this section of the lesson, I will walk through the steps I followed to calculate TF-IDF scores for all terms in all documents in the lesson's obituary corpus. If you would like to follow along, you can download the lesson files and run a Jupyter Notebook from the inside the lesson folder. As with any programming language, there's more than one way to do each of these steps. However, the methods I've chosen all attempt to model one of two things: (1) How to break a humanities computing problem down into the smallest possible chunk and (2) how problems are often approached in Python. There's no law that says you can't write java-ish code in Python, but many people use Python specifically because it makes some things easier than others. 
+In this section of the lesson, I will walk through the steps I followed to calculate TF-IDF scores for all terms in all documents in the lesson's obituary corpus. If you would like to follow along, you can download the lesson files and run a Jupyter Notebook from the inside the lesson folder. As with any programming language, there's more than one way to do each of these steps. However, the methods I've chosen all attempt to model one of two things: (1) How to break a humanities computing problem down into the smallest possible chunk and (2) how problems are often approached in Python. There's no law that says you can't write java-ish code in Python, but many people use Python specifically because it makes some things easier than others. I try to make my motives as overt as possible. 
 
 My first block of code is designed to retrieve all the filenames for '.txt' files in the 'txt' folder. The following lines of code import the ```os``` library and use the ```os.walk()``` method from Python's to generate a list of all the files in the 'txt' folder that end with '.txt'. ```os.walk()``` returns the root directory of a folder, a list of all subfolders, and a list of all files in the directory, including all files in its subdirectories. 
 
@@ -676,34 +676,47 @@ for i in all_txt_files:
     all_docs.append(txt)
 ```
 
+This is all the setup work we require. Text processing steps like tokenization and removing punctuation will happen automatically when we use scikit-learn's ```TfidfVectorizer``` to convert documents from a list of strings to TF-IDF scores. The following block of code imports ```TfidfVectorizer``` from the scikit-learn library, which comes pre-installed with Anaconda. TfidfVectorizer is a class (written using object-oriented programming), so I instantiate it with specific parameters as a variable named 'vectorizer'. I then run the object's fit_transform() method on my list of strings (a variable called 'all_docs'). The stored variable 'X' is output of the fit_transform() method. 
 
 ```python
 #import the TfidfVectorizer from scikit-learn.  
 from sklearn.feature_extraction.text import TfidfVectorizer
-# TfidfVectorizer is a class, so I instantiate it with specific pararmeters as 'vectorizer'
-# I then run the object's fit_transform() method on my list of strings (all_docs)
-# The stored variable X is output of the fit_transform() method 
+ 
 vectorizer = TfidfVectorizer(max_df=.65, min_df=1, stop_words=None, use_idf=True, norm=None)
 X = vectorizer.fit_transform(all_docs)
-# this line of code verifies that the numpy array represents the same number of 
-# documents that we have in the file list
+```
+
+The fit_transform() method above converts the list of strings to something called a sparse matrix. In this case, the matrix represents TF-IDF values for all texts. Sparse matrices save on memory by leaving out all zero values, but we want access to those, so the next block uses the toarray() method to convert the sparse matrices to a numpy array. We also print the length of the array to ensure that it's the same length as our list of documents. 
+
+```python 
+myarray = X.toarray()
+# this line of code verifies that the numpy array represents the same number of documents that we have in the file list
 len(myarray)
 ```
+Each of these arrays is a sequence of numbers. Each document from our corpus is stored as its own sequence, and that the order of these items is the same as the order of our all_docs list. Further, each document array has the same number of values, one for each word in the corpus. As a result, we have grid where each row is a document, and each column is a term. The full term list, in its default order, is stored in our 'vectorizer' variable. We can use the get_feature_names() method to rejoin each row of data with the term list. 
 
 
 ```python
-# The fit_transform() method converts the list of strings to a sparse matrix of TF-IDF values
-# The toarray method converts a numpy array, which makes it easier to indpect every values including the zeros 
-myarray = X.toarray()
+# make the output folder if it doesn't already exist
+import os
+if not os.path.exists("tfidf_output"):
+    os.makedirs("tf_idf_output")
 ```
 
-```python
-#make the output folder
-doc_0_feature_scores = list(zip(vectorizer.get_feature_names(), myarray[0]))
-# loop each item in the array
-# construct a dataframe
-# output to a csv
 
+
+
+```python
+doc_0_feature_scores = list(zip(vectorizer.get_feature_names(), myarray[0]))
+# loop each item in myarray
+for doc in myarray:
+	# construct a dataframe
+	data = list(zip(terms, a[c,:]))
+    df = pd.DataFrame.from_records(data, columns=['term', 'score']).sort_values(by='score', ascending=False).reset_index(drop=True)
+    # output file name
+    
+    # output to a csv
+	df.to_csv()
 ```
 
 Scikit-Learn version
