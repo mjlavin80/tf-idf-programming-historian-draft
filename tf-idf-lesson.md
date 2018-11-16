@@ -695,29 +695,30 @@ len(myarray)
 ```
 Each of these arrays is a sequence of numbers. Each document from our corpus is stored as its own sequence, and that the order of these items is the same as the order of our all_docs list. Further, each document array has the same number of values, one for each word in the corpus. As a result, we have grid where each row is a document, and each column is a term. The full term list, in its default order, is stored in our 'vectorizer' variable. We can use the get_feature_names() method to rejoin each row of data with the term list. 
 
+This block of code has three parts. After importing the pandas and os libraries, I first check for a folder called "tf_idf_output" and create it if it doesn't exist. The second task is to take the list of .txt files from my earlier block of code and use it to construct a counterpart .csv file path for each .txt file. The output_filenames variable will, for example, convert "txt/0101.txt" (the path of the first .txt file) to "tf_idf_output/0101.csv", and on and on for each file. Third and finally, this block contains a loop to merge each vector of tf_idf scores with the feature names from vectorizer, convert the merged term/score pairs to a pandas dataframe, and save each dataframe to its corresponding .csv file. 
 
 ```python
-# make the output folder if it doesn't already exist
+import pandas as pd
 import os
-if not os.path.exists("tfidf_output"):
+
+# make the output folder if it doesn't already exist
+if not os.path.exists("tf_idf_output"):
     os.makedirs("tf_idf_output")
-```
 
+# construct a list of output file paths using the previous list of text files the relative path for tf_idf_output
+output_filenames = [i.replace(".txt", ".csv").replace("txt/", "tf_idf_output/") for i in all_txt_files]
 
-
-
-```python
-doc_0_feature_scores = list(zip(vectorizer.get_feature_names(), myarray[0]))
-# loop each item in myarray
-for doc in myarray:
-	# construct a dataframe
-	data = list(zip(terms, a[c,:]))
+# loop each item in myarray, using enumerate to keep track of the current position
+for n, doc in enumerate(myarray):
+    # construct a dataframe
+    data = list(zip(vectorizer.get_feature_names(), doc))
     df = pd.DataFrame.from_records(data, columns=['term', 'score']).sort_values(by='score', ascending=False).reset_index(drop=True)
-    # output file name
-    
-    # output to a csv
-	df.to_csv()
+
+    # output to a csv using the enumerated value for the filename
+    df.to_csv(output_filenames[n])
 ```
+
+
 
 Scikit-Learn version
 
