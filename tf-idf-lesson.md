@@ -695,8 +695,6 @@ len(myarray)
 ```
 Each of these arrays is a sequence of numbers. Each document from our corpus is stored as its own sequence, and that the order of these items is the same as the order of our all_docs list. Further, each document array has the same number of values, one for each word in the corpus. As a result, we have grid where each row is a document, and each column is a term. The full term list, in its default order, is stored in our 'vectorizer' variable. We can use the get_feature_names() method to rejoin each row of data with the term list. 
 
-This block of code has three parts. After importing the pandas and os libraries, I first check for a folder called "tf_idf_output" and create it if it doesn't exist. The second task is to take the list of .txt files from my earlier block of code and use it to construct a counterpart .csv file path for each .txt file. The output_filenames variable will, for example, convert "txt/0101.txt" (the path of the first .txt file) to "tf_idf_output/0101.csv", and on and on for each file. Third and finally, this block contains a loop to merge each vector of tf_idf scores with the feature names from vectorizer, convert the merged term/score pairs to a pandas dataframe, and save each dataframe to its corresponding .csv file. 
-
 ```python
 import pandas as pd
 import os
@@ -718,22 +716,39 @@ for n, doc in enumerate(myarray):
     df.to_csv(output_filenames[n])
 ```
 
+The above block of code has three parts:
 
+1. After importing the pandas and os libraries, it checks for a folder called "tf_idf_output" and create it if it doesn't exist. 
+2. It takes the list of .txt files from my earlier block of code and use it to construct a counterpart .csv file path for each .txt file. The output_filenames variable will, for example, convert "txt/0101.txt" (the path of the first .txt file) to "tf_idf_output/0101.csv", and on and on for each file. 
+3. Using a loop, it merges each vector of tf_idf scores with the feature names from vectorizer, converts each merged term/score pairs to a pandas dataframe, and saves each dataframe to its corresponding .csv file.
 
-Scikit-Learn version
+### Potential Variations of TF-IDF
 
-Settings stopwords, etc. 
+#### Settings
 
+The Scikit-Learn TfidfVectorizer has several internal settings that can be changed to affect the output. In general, these settings all have pros and cons; there's no singular, correct way to preset them and produce output. Instead, it's best to understand exactly what each setting does so that you can describe and defend the choices you've made. The full list of parameters is described in [Scikit-Learn's documentation](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html), but here are some of the most important settings:
 
-### TF-IDF Compared with Alternative Techniques
+1. ##### stopwords
 
-TF-IDF can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
+In my code, I used ```python stopwords=None``` but ```python stopwords='english'``` is often used. This setting will filter out words using a preselected list of high frequency function words such as 'the', 'to', and 'of'. Depending on your settings, many of these terms will have low tf-idf scores regardless because they tend to be found in all documents. 
 
-### Potential Variations of TF-IDF (Features)
+2. #####  min_df, max_df
+
+These settings control the minimum number of documents a term must be found in to be included and the maximum number of documents a term can be found in in order to be included. Either can be expressed as a decimal between 0 and 1 indicating the percent threshold, or as a whole number that represents a raw count. Setting max_df below .9 will typically remove most or all stopwords.
+
+3. ##### max_features
+
+This parameter can be used to winnow out terms by frequency before running tf-idf. It cn be especially useful in a machine learning context when you do not wish to exceed a maximum recommended number of term features.  
+
+4. ##### norm, smooth_idf, and sublinear_tf
+
+Each of these will affect the range of numerical scores that the tf-idf algorithm outputs. norm supports l1 and l2 normalization, which you can read about on [machinelearningmastery.com](https://machinelearningmastery.com/vector-norms-machine-learning/). Smooth-idf adds one to each document frequency score, "as if an extra document was seen containing every term in the collection exactly once." Sublinear_tf applies another scaling transformation, replacing tf with log(tf). 
+
+#### Features
 
 In this section, I want to discuss a Fivethirtyeight.com post from March 2016 called "These Are The Phrases Each GOP Candidate Repeats Most"(https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/). It's a relatively straightforward post, but the visualization uses a modified TF-IDF that takes N-grams and performs the inverse-document frequency calculation on phrases rather than just words. I will walk readers through the process of adapting Fivethirtyeight's code to the obituary corpus I'm using in the rest of the tutorial. The result is, I think, interesting, and it demonstrates how the IDF operation can be extended. 
 
-### Some Ways TF-IDF is Utilized in Humanities Scholarship
+### Some Ways TF-IDF Can Be Used in Humanities Scholarship
 
 The idea of this section is to point to some scholarly uses of TF-IDF, as opposed to how it's used under the hood of a lot of everyday web applications.
 
@@ -752,11 +767,16 @@ This section will attempt to generalize a bit, and will provide some concrete ex
 - Test Robustness with Other Measures
 - Following up with Direct Measures
 
+### TF-IDF Compared with Common Alternatives 
+
+TF-IDF can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
+
 ## References
 
 - Beckman, Milo. "These Are The Phrases Each GOP Candidate Repeats Most," _FiveThirtyEight_, March 10, 2016. https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/
 - Bennett, Jessica, and Amisha Padnani. "Overlooked," March 8, 2018. https://www.nytimes.com/interactive/2018/obituaries/overlooked.html
 - Blei, David M., Andrew Y. Ng, and Michael I. Jordan, "Latent Dirichlet Allocation" _Journal of Machine Learning Research_ 3 (January 2003): 993-1022.
+- Documentation for TfidfVectorizer. https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
 - Grimmer, Justin and King, Gary, Quantitative Discovery from Qualitative Information: A General-Purpose Document Clustering Methodology (2009). APSA 2009 Toronto Meeting Paper. Available at SSRN: https://ssrn.com/abstract=1450070
 - Salton, G. and M.J. McGill, _Introduction to Modern Information Retrieval_. New York: McGraw-Hill, 1983.
 - Sparck Jones, Karen. "A Statistical Interpretation of Term Specificity and Its Application in Retrieval." Journal of Documentation 28, no. 1 (1972): 11–21.
