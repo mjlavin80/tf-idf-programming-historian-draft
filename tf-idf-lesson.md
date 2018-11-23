@@ -162,7 +162,7 @@ In this version of the list, "she" and "her" have both moved up. "cochrane" rema
 
 ### How the Algorithm Works
 
-__tf-idf__ can be implemented in many flavors, some more complex than others. Before I begin discussing these complexities, however, I would like to trace the algorithmic operations of one particular version. To this end, we will go back to the Nellie Bly obituary and convert the top ten term counts into __tf-idf__ scores using the same steps that were used to create the above __tf-idf__ example. These steps parallel scikit learn's __tf-idf__ implementation. 
+__Tf-idf__ can be implemented in many flavors, some more complex than others. Before I begin discussing these complexities, however, I would like to trace the algorithmic operations of one particular version. To this end, we will go back to the Nellie Bly obituary and convert the top ten term counts into __tf-idf__ scores using the same steps that were used to create the above __tf-idf__ example. These steps parallel scikit learn's __tf-idf__ implementation. 
 
 
 Addition, multiplication, and division are the primary mathematical operations necessary to follow along. At one point, we must calculate the natural logarithm of a variable, but this can be done with most online calculators and calculator mobile apps. (You can also download an Excel spreadsheet that represents the operations for all 206 terms in the Bly obituary.) Below is a table with the raw term counts for the first thirty words, in alphabetical order, from Bly's obituary, but this version has a second column that represents the number of documents in which each term can be found.
@@ -174,7 +174,7 @@ Addition, multiplication, and division are the primary mathematical operations n
 		<th title="Index">Index</th>
 		<th title="Term">Term</th>
 		<th title="Count">Count</th>
-		<th title="DF">DF</th>
+		<th title="Df">Df</th>
     </tr>
 </thead>
 <tbody>
@@ -362,18 +362,18 @@ Addition, multiplication, and division are the primary mathematical operations n
 </table>
 </div>
 
-Document frequency (df) is a count of how many documents from the corpus each word appears in. 
-(Document frequency for a particular word can be represented as df<sub>i</sub>.) To calculate inverse document frequency for each term, the most direct formula would be N/df<sub>i</sub>, where N represents the total number of documents in the corpus. However, many implementations (including the original tf-idf implementation) normalize the results with additional operations. For example, scikit-learn's implementation represents N as N+1, calculates the natural logarithm of (N+1)/df<sub>i</sub>, and then adds 1 to the final result. To summarize this particular idf equation, then: 
+Document frequency (__df__) is a count of how many documents from the corpus each word appears in. 
+(Document frequency for a particular word can be represented as __df<sub>i</sub>__.) To calculate inverse document frequency for each term, the most direct formula would be __N/df<sub>i</sub>__, where __N__ represents the total number of documents in the corpus. However, many implementations (including the original __tf-idf__ implementation) normalize the results with additional operations. For example, scikit-learn's implementation represents __N__ as __N+1__, calculates the natural logarithm of __(N+1)/df<sub>i</sub>__, and then adds 1 to the final result. To summarize this particular __idf__ equation, then: 
 
 <img src="static/images/idf-equation.png">
 
-Once idf<sub>i</sub> is calculated, tf-idf<sub>i</sub> is tf<sub>i</sub> multiplied by idf<sub>i</sub>. 
+Once __idf<sub>i</sub>__ is calculated, __tf-idf<sub>i</sub>__ is __tf<sub>i</sub>__ multiplied by __idf<sub>i</sub>__. 
 
 <img src="static/images/tf-idf-equation.png">
 
-Mathematical equations like these can be a bit bewildering if you're not used to them. (Once you've had some experience with them, they can provide a more lucid description of an algorithm's operations than any well written paragraph.) To make the equations more concrete, I've added two new columns to the terms frequency table from before. The first new column represents the derived IDF score, and the second new column multiplies the Count column to derive the final __tf-idf__ score. Notice that that IDF score is higher if the term appears in fewer documents, but that the range of visible IDF scores is between 1 and 6. Different normalization schemes would produce different scales. 
+Mathematical equations like these can be a bit bewildering if you're not used to them. (Once you've had some experience with them, they can provide a more lucid description of an algorithm's operations than any well written paragraph.) To make the equations more concrete, I've added two new columns to the terms frequency table from before. The first new column represents the derived __idf__ score, and the second new column multiplies the Count column to derive the final __tf-idf__ score. Notice that that __idf__ score is higher if the term appears in fewer documents, but that the range of visible __idf__ scores is between 1 and 6. Different normalization schemes would produce different scales. 
 
-Note also that the __tf-idf__ column, according to this version of the algorithm, cannot be lower than the count. This effect is also the result of our normalization method; adding 1 to the final IDF value ensures that we will never multiply our Count columns by a number smaller than one.    
+Note also that the __tf-idf__ column, according to this version of the algorithm, cannot be lower than the count. This effect is also the result of our normalization method; adding 1 to the final __idf__ value ensures that we will never multiply our Count columns by a number smaller than one.    
 
 <div>
 <table border="1" class="dataframe">
@@ -382,9 +382,9 @@ Note also that the __tf-idf__ column, according to this version of the algorithm
 		<th title="Index">Index</th>
 		<th title="Term">Term</th>
 		<th title="Count">Count</th>
-		<th title="DF">DF</th>
-		<th title="Smoothed-IDF">IDF</th>
-		<th title="__tf-idf__">__tf-idf__</th>
+		<th title="DF">Df</th>
+		<th title="Smoothed-idf">Idf</th>
+		<th title="Tf-idf__">Tf-idf</th>
     </tr>
 </thead>
 <tbody>
@@ -727,7 +727,7 @@ The Scikit-Learn TfidfVectorizer has several internal settings that can be chang
 
 1. ##### stopwords
 
-In my code, I used ```python stopwords=None``` but ```python stopwords='english'``` is often used. This setting will filter out words using a preselected list of high frequency function words such as 'the', 'to', and 'of'. Depending on your settings, many of these terms will have low tf-idf scores regardless because they tend to be found in all documents. 
+In my code, I used ```python stopwords=None``` but ```python stopwords='english'``` is often used. This setting will filter out words using a preselected list of high frequency function words such as 'the', 'to', and 'of'. Depending on your settings, many of these terms will have low __tf-idf__ scores regardless because they tend to be found in all documents. 
 
 2. #####  min_df, max_df
 
@@ -739,7 +739,7 @@ This parameter can be used to winnow out terms by frequency before running tf-id
 
 4. ##### norm, smooth_idf, and sublinear_tf
 
-Each of these will affect the range of numerical scores that the tf-idf algorithm outputs. norm supports l1 and l2 normalization, which you can read about on [machinelearningmastery.com](https://machinelearningmastery.com/vector-norms-machine-learning/). Smooth-idf adds one to each document frequency score, "as if an extra document was seen containing every term in the collection exactly once." Sublinear_tf applies another scaling transformation, replacing tf with log(tf). 
+Each of these will affect the range of numerical scores that the __tf-idf__ algorithm outputs. norm supports l1 and l2 normalization, which you can read about on [machinelearningmastery.com](https://machinelearningmastery.com/vector-norms-machine-learning/). Smooth-idf adds one to each document frequency score, "as if an extra document was seen containing every term in the collection exactly once." Sublinear_tf applies another scaling transformation, replacing tf with log(tf). 
 
 #### Beyond Term Features
 
@@ -747,7 +747,7 @@ Each of these will affect the range of numerical scores that the tf-idf algorith
 - Named Entities
 - N-Grams
 
-In this section, I want to discuss a Fivethirtyeight.com post from March 2016 called "These Are The Phrases Each GOP Candidate Repeats Most"(https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/). It's a relatively straightforward post, but the visualization uses a modified __tf-idf__ that takes N-grams and performs the inverse-document frequency calculation on phrases rather than just words. I will walk readers through the process of adapting Fivethirtyeight's code to the obituary corpus I'm using in the rest of the tutorial. The result is, I think, interesting, and it demonstrates how the IDF operation can be extended. 
+In this section, I want to discuss a Fivethirtyeight.com post from March 2016 called "These Are The Phrases Each GOP Candidate Repeats Most"(https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/). It's a relatively straightforward post, but the visualization uses a modified __tf-idf__ that takes N-grams and performs the inverse-document frequency calculation on phrases rather than just words. I will walk readers through the process of adapting Fivethirtyeight's code to the obituary corpus I'm using in the rest of the tutorial. The result is, I think, interesting, and it demonstrates how the __idf__ operation can be extended. 
 
 ### Some Ways __tf-idf__ Can Be Used in Humanities Scholarship
 
