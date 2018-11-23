@@ -743,13 +743,11 @@ Each of these will affect the range of numerical scores that the __tf-idf__ algo
 
 #### Beyond Term Features
 
-- Parts of Speech
-- Named Entities
-- N-Grams
+Since the basic idea of __tf-idf__ is to weight term counts against the number of documents in which terms appear, the same logic can be used on other text-based features. For example, it is relatively straightforward to combine __tf-idf__ with stemming or lemmatization. Stemming and lemmatization are two common ways to group together different word forms/inflections; for example, the stem of both _happy_ and _happiness_ is _happi_, and the lemma of both is _happy_. After stemming or lemmatization, stem or lemma counts can be substituted for term counts, and the __(s/l)f-idf__ transformation can be applied. Each stem or lemma will have a higher __df__ score than each of the words it groups together, so lemmas or stems with many word variants will tend to have lower __tf-idf__ scores. 
 
-In this section, I want to discuss a Fivethirtyeight.com post from March 2016 called "These Are The Phrases Each GOP Candidate Repeats Most"(https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/). It's a relatively straightforward post, but the visualization uses a modified __tf-idf__ that takes N-grams and performs the inverse-document frequency calculation on phrases rather than just words. I will walk readers through the process of adapting Fivethirtyeight's code to the obituary corpus I'm using in the rest of the tutorial. The result is, I think, interesting, and it demonstrates how the __idf__ operation can be extended. 
+Similarly, the __tf-idf__ transformation can be applied to n-grams. A Fivethirtyeight.com post from March 2016 called ["These Are The Phrases Each GOP Candidate Repeats Most"](https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/) uses such an approach to perform the inverse-document frequency calculation on phrases rather than words. 
 
-### Some Ways __tf-idf__ Can Be Used in Humanities Scholarship
+### Some Ways Tf-idf Can Be Used in Computational History
 
 The idea of this section is to point to some scholarly uses of __tf-idf__, as opposed to how it's used under the hood of a lot of everyday web applications.
 
@@ -768,9 +766,9 @@ This section will attempt to generalize a bit, and will provide some concrete ex
 - Test Robustness with Other Measures
 - Following up with Direct Measures
 
-### __tf-idf__ Compared with Common Alternatives 
+### Tf-idf Compared with Common Alternatives 
 
-__tf-idf__ can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
+__Tf-idf__ can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
 
 ## References
 
