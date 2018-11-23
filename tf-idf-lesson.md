@@ -361,9 +361,9 @@ __Tf-idf__ can be implemented in many flavors, some more complex than others. Be
 </table>
 </div>
 
-Document frequency (__df__) is a count of how many documents from the corpus each word appears in. (Document frequency for a particular word can be represented as __df<sub>i</sub>__.) To calculate inverse document frequency for each term, the most direct formula would be __N/df<sub>i</sub>__, where __N__ represents the total number of documents in the corpus. However, many implementations normalize the results with additional operations. For example, Scikit-Learn's implementation represents __N__ as __N+1__, calculates the natural logarithm of __(N+1)/df<sub>i</sub>__, and then adds 1 to the final result. For a humorous summary of why one might want to perform a logarithmic transformation on data see this [XKCD comic](https://xkcd.com/1162/).
+Document frequency (__df__) is a count of how many documents from the corpus each word appears in. (Document frequency for a particular word can be represented as __df<sub>i</sub>__.) To calculate inverse document frequency for each term, the most direct formula would be __N/df<sub>i</sub>__, where __N__ represents the total number of documents in the corpus. However, many implementations normalize the results with additional operations. For example, Scikit-Learn's implementation represents __N__ as __N+1__, calculates the natural logarithm of __(N+1)/df<sub>i</sub>__, and then adds 1 to the final result. For a humorous summary of why one might want to perform a logarithmic transformation on some data, see this [XKCD comic](https://xkcd.com/1162/).
 
-To express Scikit-Learn's __idf__ transformation, we can use th following equation: 
+To express Scikit-Learn's __idf__ transformation, we can state the following equation: 
 
 <img src="static/images/idf-equation.png">
 
