@@ -671,7 +671,7 @@ for i in all_txt_files:
     all_docs.append(txt)
 ```
 
-This is all the setup work we require. Text processing steps like tokenization and removing punctuation will happen automatically when we use scikit-learn's ```TfidfVectorizer``` to convert documents from a list of strings to __tf-idf__ scores. The following block of code imports ```TfidfVectorizer``` from the scikit-learn library, which comes pre-installed with Anaconda. TfidfVectorizer is a class (written using object-oriented programming), so I instantiate it with specific parameters as a variable named 'vectorizer'. I then run the object's fit_transform() method on my list of strings (a variable called 'all_docs'). The stored variable 'X' is output of the fit_transform() method. 
+This is all the setup work we require. Text processing steps like tokenization and removing punctuation will happen automatically when we use scikit-learn's ```TfidfVectorizer``` to convert documents from a list of strings to __tf-idf__ scores. The following block of code imports ```TfidfVectorizer``` from the scikit-learn library, which comes pre-installed with Anaconda. TfidfVectorizer is a class (written using object-oriented programming), so I instantiate it with specific parameters as a variable named 'vectorizer'. I then run the object's fit_transform() method on my list of strings (a variable called 'all_docs'). The stored variable ```X``` is output of the ```fit_transform()``` method. 
 
 ```python
 #import the TfidfVectorizer from scikit-learn.  
@@ -681,14 +681,14 @@ vectorizer = TfidfVectorizer(max_df=.65, min_df=1, stop_words=None, use_idf=True
 X = vectorizer.fit_transform(all_docs)
 ```
 
-The fit_transform() method above converts the list of strings to something called a sparse matrix. In this case, the matrix represents __tf-idf__ values for all texts. Sparse matrices save on memory by leaving out all zero values, but we want access to those, so the next block uses the toarray() method to convert the sparse matrices to a numpy array. We also print the length of the array to ensure that it's the same length as our list of documents. 
+The ```fit_transform()``` method above converts the list of strings to something called a sparse matrix. In this case, the matrix represents __tf-idf__ values for all texts. Sparse matrices save on memory by leaving out all zero values, but we want access to those, so the next block uses the ```toarray()``` method to convert the sparse matrices to a numpy array. We also print the length of the array to ensure that it's the same length as our list of documents. 
 
 ```python 
 myarray = X.toarray()
 # this line of code verifies that the numpy array represents the same number of documents that we have in the file list
 len(myarray)
 ```
-Each of these arrays is a sequence of numbers. Each document from our corpus is stored as its own sequence, and that the order of these items is the same as the order of our all_docs list. Further, each document array has the same number of values, one for each word in the corpus. As a result, we have grid where each row is a document, and each column is a term. The full term list, in its default order, is stored in our 'vectorizer' variable. We can use the get_feature_names() method to rejoin each row of data with the term list. 
+Each of these arrays is a sequence of numbers. Each document from our corpus is stored as its own sequence, and that the order of these items is the same as the order of our all_docs list. Further, each document array has the same number of values, one for each word in the corpus. As a result, we have grid where each row is a document, and each column is a term. The full term list, in its default order, is stored in our ```vectorizer``` variable. We can use the ```get_feature_names()``` method to rejoin each row of data with the term list. 
 
 ```python
 import pandas as pd
@@ -717,13 +717,32 @@ The above block of code has three parts:
 
 2. It takes the list of .txt files from my earlier block of code and use it to construct a counterpart .csv file path for each .txt file. The output_filenames variable will, for example, convert "txt/0101.txt" (the path of the first .txt file) to "tf_idf_output/0101.csv", and on and on for each file. 
 
-3. Using a loop, it merges each vector of tf_idf scores with the feature names from vectorizer, converts each merged term/score pairs to a pandas dataframe, and saves each dataframe to its corresponding .csv file.
+3. Using a loop, it merges each vector of __tf-idf__ scores with the feature names from vectorizer, converts each merged term/score pairs to a pandas dataframe, and saves each dataframe to its corresponding .csv file.
 
-### Potential Variations of __tf-idf__
+### Some Ways Tf-idf Can Be Used in Computational History
+
+The idea of this section is to point to some scholarly uses of __tf-idf__, as opposed to how it's used under the hood of a lot of everyday web applications.
+
+- As an Exploratory Tool or Hermeneutic Aid
+- As a Visualization Technique
+- Searching for Similar Texts
+- Making Feature Sets to Use with Machine Learning
+
+### Interpreting Word Lists: Best Practices and Cautionary Notes
+
+This section will attempt to generalize a bit, and will provide some concrete examples of how a __tf-idf__ term list can lead you in a direction that distorts your understanding of an underlying text. I will offer a few strategies designed to prevent the most common pitfalls.
+
+- Cautionary Notes
+- Generating Hypotheses or Research Questions
+- Read at Least Some of the Underlying Texts 
+- Test Robustness with Other Measures
+- Following up with Direct Measures
+
+### Potential Variations of Tf-idf
 
 #### Settings
 
-The Scikit-Learn TfidfVectorizer has several internal settings that can be changed to affect the output. In general, these settings all have pros and cons; there's no singular, correct way to preset them and produce output. Instead, it's best to understand exactly what each setting does so that you can describe and defend the choices you've made. The full list of parameters is described in [Scikit-Learn's documentation](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html), but here are some of the most important settings:
+The Scikit-Learn ```TfidfVectorizer``` has several internal settings that can be changed to affect the output. In general, these settings all have pros and cons; there's no singular, correct way to preset them and produce output. Instead, it's best to understand exactly what each setting does so that you can describe and defend the choices you've made. The full list of parameters is described in [Scikit-Learn's documentation](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html), but here are some of the most important settings:
 
 1. ##### stopwords
 
@@ -745,30 +764,16 @@ Each of these will affect the range of numerical scores that the __tf-idf__ algo
 
 Since the basic idea of __tf-idf__ is to weight term counts against the number of documents in which terms appear, the same logic can be used on other text-based features. For example, it is relatively straightforward to combine __tf-idf__ with stemming or lemmatization. Stemming and lemmatization are two common ways to group together different word forms/inflections; for example, the stem of both _happy_ and _happiness_ is _happi_, and the lemma of both is _happy_. After stemming or lemmatization, stem or lemma counts can be substituted for term counts, and the __(s/l)f-idf__ transformation can be applied. Each stem or lemma will have a higher __df__ score than each of the words it groups together, so lemmas or stems with many word variants will tend to have lower __tf-idf__ scores. 
 
-Similarly, the __tf-idf__ transformation can be applied to n-grams. A Fivethirtyeight.com post from March 2016 called ["These Are The Phrases Each GOP Candidate Repeats Most"](https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/) uses such an approach to perform the inverse-document frequency calculation on phrases rather than words. 
-
-### Some Ways Tf-idf Can Be Used in Computational History
-
-The idea of this section is to point to some scholarly uses of __tf-idf__, as opposed to how it's used under the hood of a lot of everyday web applications.
-
-- As an Exploratory Tool or Hermeneutic Aid
-- As a Visualization Technique
-- Searching for Similar Texts
-- Making Feature Sets to Use with Machine Learning
-
-### Interpreting Word Lists: Best Practices and Cautionary Notes
-
-This section will attempt to generalize a bit, and will provide some concrete examples of how a __tf-idf__ term list can lead you in a direction that distorts your understanding of an underlying text. I will offer a few strategies designed to prevent the most common pitfalls.
-
-- Cautionary Notes
-- Generating Hypotheses or Research Questions
-- Read at Least Some of the Underlying Texts 
-- Test Robustness with Other Measures
-- Following up with Direct Measures
+Similarly, the __tf-idf__ transformation can be applied to n-grams. A Fivethirtyeight.com post from March 2016 called ["These Are The Phrases Each GOP Candidate Repeats Most"](https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/) uses such an approach to perform the inverse-document frequency calculation on phrases rather than words.
 
 ### Tf-idf Compared with Common Alternatives 
 
 __Tf-idf__ can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
+
+Keyness
+Topic models
+Automatic summarization
+Clustering
 
 ## References
 
