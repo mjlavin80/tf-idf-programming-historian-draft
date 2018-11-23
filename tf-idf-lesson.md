@@ -375,11 +375,11 @@ Addition, multiplication, and division are the primary mathematical operations n
 Document frequency (df) is a count of how many documents from the corpus each word appears in. 
 (Document frequency for a particular word can be represented as df<sub>i</sub>.) To calculate inverse document frequency for each term, the most direct formula would be N/df<sub>i</sub>, where N represents the total number of documents in the corpus. However, many implementations (including the original tf-idf implementation) normalize the results with additional operations. For example, scikit-learn's implementation represents N as N+1, calculates the natural logarithm of (N+1)/df<sub>i</sub>, and then adds 1 to the final result. To summarize this particular idf equation, then: 
 
-<img style="display: block; max-width: 350px;" src="static/images/idf-equation.png">
+<img src="static/images/idf-equation.png">
 
 Once idf<sub>i</sub> is calculated, tf-idf<sub>i</sub> is tf<sub>i</sub> multiplied by idf<sub>i</sub>. 
 
-<img style="display: block; max-width: 350px;" src="static/images/tf-idf-equation.png">
+<img src="static/images/tf-idf-equation.png">
 
 Mathematical equations like these can be a bit bewildering if you're not used to them. (Once you've had some experience with them, they can provide a more lucid description of an algorithm's operations than any well written paragraph.) To make the equations more concrete, I've added two new columns to the terms frequency table from before. The first new column represents the derived IDF score, and the second new column multiplies the Count column to derive the final TF-IDF score. Notice that that IDF score is higher if the term appears in fewer documents, but that the range of visible IDF scores is between 1 and 6. Different normalization schemes would produce different scales. 
 
