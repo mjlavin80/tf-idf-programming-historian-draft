@@ -731,7 +731,7 @@ The above block of code has three parts:
 
 If you the code excerpts above, you will end up with a folder called "tf_idf_output" with 366 .csv files in it. Each file corresponds to an obituary in the "txt" folder, and each contains a list of terms with __tf-idf__ scores for that document. As we saw with Nellie Bly's obituary, these term lists can be very suggestive; however, it's important to understand that over-interpreting your results can actually distort your understanding of an underlying text. 
 
-In general, it's best to begin with the ideas that these terms lists will be helpful for generating hypotheses or research questions, but will not necessarily be definitive in terms to defending claims. For example, I have assembled a quick list of obituaries for late 19th- and early 20th-century figures who all worked for newspapers and magazines and had some connection to social reform. y list includes Nellie Bly, Willa Cather, W.E.B. Du Bois, Upton Sinclair, Ida Tarbell, but there may be other figures in the corpus who fit the same criteria.  
+In general, it's best to begin with the ideas that these terms lists will be helpful for generating hypotheses or research questions, but will not necessarily be definitive in terms to defending claims. For example, I have assembled a quick list of obituaries for late 19th- and early 20th-century figures who all worked for newspapers and magazines and had some connection to social reform. My list includes Nellie Bly, Willa Cather, W.E.B. Du Bois, Upton Sinclair, Ida Tarbell, but there may be other figures in the corpus who fit the same criteria.  
 
 I originally expected to see many shared terms, but I was surprised. Each list is dominate by individualized words (proper names, geographic places, companies, etc.) but I could screen these out using my __tf-idf__ settings, or just ignore them. Simultaneously, I can look for words overtly indicating each figure's ties to the profession of authorship. The following table shows the top 20 __tf-idf__ terms by rank for each obituary:
 
@@ -768,14 +768,15 @@ I originally expected to see many shared terms, but I was surprised. Each list i
  <tr><td>20</td><td>verne</td><td><strong>wrote</strong></td><td>soviet</td><td><strong>novel</strong></td><td><strong>magazine</strong></td></tr>
 </tbody></table>
 
+I've used boldface to indicate terms that seem overtly related to authorship or writing. The list includes _articles_, _arts_, _book_, _book_, _books_, _encyclopedia_, _magazine_, _nom_, _novel_, _novels_, _pamphlets_, _plume_, _verse_, _volumes_, _writer_, and _wrote_, but it could be extended to include references to specific magazine or book titles. Setting aside momentarily such complexities, it is striking to me that Cather and Sinclair's lists have so many words for books and writing, whereas Bly, Du Bois and Tarbell's do not. 
 
+I could easily jump to conclusions. Cather's identity seems to be tied most to her gender, her sense of place, and her fiction and verse. Sinclair more so with his politics and his writings about meat, industry, and Sacco and Vanzetti. Bly is tied to her pen name, her husband, and her writing about asylums. Du Bois is linked to race and his academic career. Tarbell is described by what she wrote about: namely business, the trusts, Standard Oil, and Abraham Lincoln. Going further, I could argue that gender seems more distinctive for women than it is for men; race is only a top term for the one African American in my set. 
 
+Each of these observations forms the basis for a deeper question, but these details aren't enough to make generalizations. I should read at least some of the underlying obituaries to make sure I'm not getting false signals from any terms. If I read Du Bois's obituary, for example, I may discover that mentions of his work "The Encyclopedia of the Negro," contribute at least partially to the overall score of the word _negro_. 
 
-- Cautionary Notes
+Likewise, I can discover that Bly's obituary does include words like _journalism_, _journalistic_, _newspapers_, and _writing_, but the obituary is very short, meaning most words mentioned in it occur only once or twice, which means that words with very high __idf__ scores are even more likely to top her list. I really want __tf__ and __idf__ to be balanced, so I could rule out words that appear in only a few documents, or I could ignore results for obituaries below a certain word count. 
 
-- Read at Least Some of the Underlying Texts 
-- Test Robustness with Other Measures
-- Following up with Direct Measures
+Finally, I can design tests to measure directly questions like: were obituaries of African Americans are more likely to mention race? I think the prediction that they did is a good hypothesis, but I should still subject my generalizations to scrutiny before I form conclusions.   
 
 ### Some Ways Tf-idf Can Be Used in Computational History
 
@@ -825,12 +826,19 @@ Similarly, the __tf-idf__ transformation can be applied to n-grams. A Fivethirty
 
 ### Tf-idf and Common Alternatives
 
-__Tf-idf__ can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
+__Tf-idf__ can be compared with several other methods of isolating and/or ranking important term features in a document or collection of documents. This section provides a brief mention of four related but distinct measures that target similar but not identical aspects of textual information. 
 
-Keyness
-Topic models
-Automatic summarization
-Clustering vs. Modularity clusters of, say, cosine similarity
+1. #### Keyness
+
+Keyness is a catchall term for a constellation of statistical measures that attempt to indicated the numerical significance of a term to a document or set of documents, in direct comparison with a larger set of documents or corpus. Depending on how we set up our __tf-idf__ transformation, it may isolate many of a document's most important features, but one clear advantage to keyness testing is that the result is often a numerical indicator of how atypical the term's usage in a text is. A Chi-square test, for example, we can evaluate the relationship of a term frequency to an established norm, and derive a P-value indicating probability of encountering the observed difference in a random sample. 
+
+2. #### Topic Models
+
+Topic modeling and __tf-idf__ are radically different techniques, but I find that newcomers to digital humanities often want to run topic modeling on a corpus as a first step and, in at least some of those cases, __tf-idf__ would be preferable. __Tf-idf__ is espeically appropriate if you are looking for a way to get a bird's eye view of your corpus early in the exploratory phase of your research. This is one reason __tf-idf__ is integrated into [the Overview Project](https://www.overviewdocs.com). Topic models can also help scholars explore their corpora, and they have several advantages over other techniques, namely that they suggest broad categories or communities of texts, but this a general advantage of unsupervised clustering methods. Topic models are especially appealing because documents are assigned scores for how well they fit each topic, and because topics are represented as lists of co-occurring terms, which provides a strong sense of how terms relate to groupings. However, the probabilistic model behind topic models is sophisticated, and it's easy to warp your results if you don't understand what you're doing. The math behind __tf-idf__ is lucid enough to depict in a spreadsheet. 
+
+3. #### Automatic Text Summarization
+
+Text summarization is yet another way to explore a corpus. Rada Mihalcea and Paul Tarau, for example, have published on TextRank, "a graph-based ranking model for text processing" with promising applications for keyword and sentence extraction. As with topic modeling, TextRank and __tf-idf__ are altogether dissimilar in their approach to information retrieval, yet the goal of both algorithms has a great deal of overlap. It may be appropriate for your research, especially if your goal is to get a relatively quick a sense of your documents' contents before designing a larger research project. 
 
 ## References
 
