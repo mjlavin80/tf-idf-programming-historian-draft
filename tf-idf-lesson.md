@@ -749,23 +749,23 @@ I originally expected to see many shared terms, but I was surprised. Each list i
  <tr><td>1</td><td>cochrane</td><td>cather</td><td>dubois</td><td>sinclair</td><td>tarbell</td></tr>
  <tr><td>2</td><td>her</td><td>her</td><td>dr</td><td>socialist</td><td>she</td></tr>
  <tr><td>3</td><td>she</td><td>she</td><td>negro</td><td>upton</td><td>her</td></tr>
- <tr><td>4</td><td>seaman</td><td>nebraska</td><td>ghana</td><td>books</td><td>lincoln</td></tr>
+ <tr><td>4</td><td>seaman</td><td>nebraska</td><td>ghana</td><td>__books__</td><td>lincoln</td></tr>
  <tr><td>5</td><td>bly</td><td>miss</td><td>peace</td><td>lanny</td><td>miss</td></tr>
- <tr><td>6</td><td>nellie</td><td>forrester</td><td>encyclopedia</td><td>social</td><td>oil</td></tr>
+ <tr><td>6</td><td>nellie</td><td>forrester</td><td>__encyclopedia__</td><td>social</td><td>oil</td></tr>
  <tr><td>7</td><td>mark</td><td>sibert</td><td>communist</td><td>budd</td><td>abraham</td></tr>
  <tr><td>8</td><td>ironclad</td><td>twilights</td><td>barrington</td><td>jungle</td><td>mcclure</td></tr>
- <tr><td>9</td><td>plume</td><td>willa</td><td>fisk</td><td>brass</td><td>easton</td></tr>
- <tr><td>10</td><td>vexations</td><td>antonia</td><td>atlanta</td><td>california</td><td>volumes</td></tr>
- <tr><td>11</td><td>phileas</td><td>mcclure</td><td>folk</td><td>writer</td><td>minerva</td></tr>
- <tr><td>12</td><td>597</td><td>novels</td><td>booker</td><td>vanzetti</td><td>standard</td></tr>
+ <tr><td>9</td><td>__plume__</td><td>willa</td><td>fisk</td><td>brass</td><td>easton</td></tr>
+ <tr><td>10</td><td>vexations</td><td>antonia</td><td>atlanta</td><td>california</td><td>__volumes__</td></tr>
+ <tr><td>11</td><td>phileas</td><td>mcclure</td><td>folk</td><td>__writer__</td><td>minerva</td></tr>
+ <tr><td>12</td><td>597</td><td>__novels__</td><td>booker</td><td>vanzetti</td><td>standard</td></tr>
  <tr><td>13</td><td>elizabeth</td><td>pioneers</td><td>successively</td><td>macfadden</td><td>business</td></tr>
- <tr><td>14</td><td>nom</td><td>cloud</td><td>souls</td><td>sacco</td><td>titusville</td></tr>
- <tr><td>15</td><td>balloon</td><td>book</td><td>council</td><td>wrote</td><td>articles</td></tr>
+ <tr><td>14</td><td>__nom__</td><td>cloud</td><td>souls</td><td>sacco</td><td>titusville</td></tr>
+ <tr><td>15</td><td>balloon</td><td>__book__</td><td>council</td><td>__wrote__</td><td>__articles__</td></tr>
  <tr><td>16</td><td>forgeries</td><td>calif</td><td>party</td><td>meat</td><td>bridgeport</td></tr>
- <tr><td>17</td><td>mcalpin</td><td>novel</td><td>disagreed</td><td>pamphlets</td><td>expose</td></tr>
+ <tr><td>17</td><td>mcalpin</td><td>__novel__</td><td>disagreed</td><td>__pamphlets__</td><td>expose</td></tr>
  <tr><td>18</td><td>asylum</td><td>southwest</td><td>harvard</td><td>my</td><td>trusts</td></tr>
- <tr><td>19</td><td>fogg</td><td>verse</td><td>arts</td><td>industry</td><td>mme</td></tr>
- <tr><td>20</td><td>verne</td><td>wrote</td><td>soviet</td><td>novel</td><td>magazine</td></tr>
+ <tr><td>19</td><td>fogg</td><td>__verse__</td><td>__arts__</td><td>industry</td><td>mme</td></tr>
+ <tr><td>20</td><td>verne</td><td>__wrote__</td><td>soviet</td><td>__novel__</td><td>__magazine__</td></tr>
 </tbody></table>
 
 
