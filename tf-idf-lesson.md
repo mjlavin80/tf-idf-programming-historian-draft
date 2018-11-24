@@ -384,7 +384,7 @@ Note also that the __tf-idf__ column, according to this version of the algorithm
 		<th title="Count">Count</th>
 		<th title="DF">Df</th>
 		<th title="Smoothed-idf">Idf</th>
-		<th title="Tf-idf__">Tf-idf</th>
+		<th title="Tf-idf">Tf-idf</th>
     </tr>
 </thead>
 <tbody>
@@ -727,24 +727,73 @@ The above block of code has three parts:
 
 3. Using a loop, it merges each vector of __tf-idf__ scores with the feature names from vectorizer, converts each merged term/score pairs to a pandas dataframe, and saves each dataframe to its corresponding .csv file.
 
-### Some Ways Tf-idf Can Be Used in Computational History
-
-The idea of this section is to point to some scholarly uses of __tf-idf__, as opposed to how it's used under the hood of a lot of everyday web applications.
-
-- As an Exploratory Tool or Hermeneutic Aid
-- As a Visualization Technique
-- Searching for Similar Texts
-- Making Feature Sets to Use with Machine Learning
-
 ### Interpreting Word Lists: Best Practices and Cautionary Notes
 
-This section will attempt to generalize a bit, and will provide some concrete examples of how a __tf-idf__ term list can lead you in a direction that distorts your understanding of an underlying text. I will offer a few strategies designed to prevent the most common pitfalls.
+If you the code excerpts above, you will end up with a folder called "tf_idf_output" with 366 .csv files in it. Each file corresponds to an obituary in the "txt" folder, and each contains a list of terms with __tf-idf__ scores for that document. As we saw with Nellie Bly's obituary, these term lists can be very suggestive; however, it's important to understand that over-interpreting your results can actually distort your understanding of an underlying text. 
+
+In general, it's best to begin with the ideas that these terms lists will be helpful for generating hypotheses or research questions, but will not necessarily be definitive in terms to defending claims. For example, I have assembled a quick list of obituaries for late 19th- and early 20th-century figures who all worked for newspapers and magazines and had some connection to social reform. y list includes Nellie Bly, Willa Cather, W.E.B. Du Bois, Upton Sinclair, Ida Tarbell, but there may be other figures in the corpus who fit the same criteria.  
+
+I originally expected to see many shared terms, but I was surprised. Each list is dominate by individualized words (proper names, geographic places, companies, etc.) but I could screen these out using my __tf-idf__ settings, or just ignore them. Simultaneously, I can look for words overtly indicating each figure's ties to the profession of authorship. The following table shows the top 20 __tf-idf__ terms by rank for each obituary:
+
+<table border="1" class="dataframe">
+<thead>
+	<tr style="text-align: right;">
+		<th title="tfidfrank">Tf-idf Rank</th>
+		<th title="nelliebly">Nellie Bly</th>
+		<th title="willacather">Willa Cather</th>
+		<th title="webdubois">W.E.B. Du Bois</th>
+		<th title="uptonsinclair">Upton Sinclair</th>
+		<th title="idatarbell">Ida Tarbell</th>
+    </tr>
+</thead><tbody>
+ <tr><td>1</td><td>cochrane</td><td>cather</td><td>dubois</td><td>sinclair</td><td>tarbell</td></tr>
+ <tr><td>2</td><td>her</td><td>her</td><td>dr</td><td>socialist</td><td>she</td></tr>
+ <tr><td>3</td><td>she</td><td>she</td><td>negro</td><td>upton</td><td>her</td></tr>
+ <tr><td>4</td><td>seaman</td><td>nebraska</td><td>ghana</td><td>books</td><td>lincoln</td></tr>
+ <tr><td>5</td><td>bly</td><td>miss</td><td>peace</td><td>lanny</td><td>miss</td></tr>
+ <tr><td>6</td><td>nellie</td><td>forrester</td><td>encyclopedia</td><td>social</td><td>oil</td></tr>
+ <tr><td>7</td><td>mark</td><td>sibert</td><td>communist</td><td>budd</td><td>abraham</td></tr>
+ <tr><td>8</td><td>ironclad</td><td>twilights</td><td>barrington</td><td>jungle</td><td>mcclure</td></tr>
+ <tr><td>9</td><td>plume</td><td>willa</td><td>fisk</td><td>brass</td><td>easton</td></tr>
+ <tr><td>10</td><td>vexations</td><td>antonia</td><td>atlanta</td><td>california</td><td>volumes</td></tr>
+ <tr><td>11</td><td>phileas</td><td>mcclure</td><td>folk</td><td>writer</td><td>minerva</td></tr>
+ <tr><td>12</td><td>597</td><td>novels</td><td>booker</td><td>vanzetti</td><td>standard</td></tr>
+ <tr><td>13</td><td>elizabeth</td><td>pioneers</td><td>successively</td><td>macfadden</td><td>business</td></tr>
+ <tr><td>14</td><td>nom</td><td>cloud</td><td>souls</td><td>sacco</td><td>titusville</td></tr>
+ <tr><td>15</td><td>balloon</td><td>book</td><td>council</td><td>wrote</td><td>articles</td></tr>
+ <tr><td>16</td><td>forgeries</td><td>calif</td><td>party</td><td>meat</td><td>bridgeport</td></tr>
+ <tr><td>17</td><td>mcalpin</td><td>novel</td><td>disagreed</td><td>pamphlets</td><td>expose</td></tr>
+ <tr><td>18</td><td>asylum</td><td>southwest</td><td>harvard</td><td>my</td><td>trusts</td></tr>
+ <tr><td>19</td><td>fogg</td><td>verse</td><td>arts</td><td>industry</td><td>mme</td></tr>
+ <tr><td>20</td><td>verne</td><td>wrote</td><td>soviet</td><td>novel</td><td>magazine</td></tr>
+</tbody></table>
+
+
+
 
 - Cautionary Notes
-- Generating Hypotheses or Research Questions
+
 - Read at Least Some of the Underlying Texts 
 - Test Robustness with Other Measures
 - Following up with Direct Measures
+
+### Some Ways Tf-idf Can Be Used in Computational History
+
+As I have described, __tf-idf__ has its origins in information retrieval, and the idea of weighting term frequencies against norms in a larger corpus continues to be used to power various aspects of everyday web applications, especially text-based search engines. However, in a cultural analytics or computational history context, __tf-idf__ is suited for a particular set of tasks. These uses tend to fall into one of three groups.  
+
+1. #### As an Exploratory Tool or Visualization Technique
+
+As I've already demonstrated, terms lists with __tf-idf__ scores for each document in a corpus can be a strong hermeneutic aid in themselves, they can help generate hypotheses or research questions. Word lists can also be the building bocks for more sophisticated browsing and visualization strategies. ["A full-text visualization of the Iraq War Logs"](http://jonathanstray.com/a-full-text-visualization-of-the-iraq-war-logs), by Jonathan Stray and Julian Burgess, is a good example of this use case. Using __tf-idf__-transformed features, Stray and Burgess build a network visualization that positions Iraq War logs in relation to their most distinctive keywords. This way of visualizing textual information led Stray to develop [the Overview Project](https://www.overviewdocs.com), which provides a dashboard for users to visualize and search thousands of documents at a time. We could use this kind of approach to graph our obituaries corpus and see if there are keyword communities. 
+
+2. #### Textual Similarity and Feature Sets
+
+Since __tf-idf__ will often produce lower scores for high frequency function words and increased scores for terms related to the topical signal of a text, it is well suited for tasks involving textual similarity. A search index will often perform __tf-idf__ on a corpus and return ranked results to user searches by looking for documents with the highest cosine similarity to the user's search string. The same logic can be used to ask a question like "Which obituary in our corpus is most similar to Nellie Bly's obituary?" 
+
+Using similar logic, we could use __tf-idf__ to discover the top terms related to a document or a group of documents. For example, I could gather together a selection of obituaries about journalists (Bly included) and combine them into one document before running __tf-idf__. The output for that document would now work as a heuristic for terms that are distinctive in my journalism obituaries in the corpus when compared with other obituaries in the corpus. I could use such a term list for a range of other computational tasks.
+
+3. #### As a Pre-processing Step
+
+Item 2 gestures at why __tf-idf__ pre-processing is so often used with machine learning. __Tf-idf__-transformed features tend to have more predictive value than raw term frequencies, especially when classifying a supervised machine learning model, in part because it tends to increase the weight of topic words and reduce the weight of high frequency function words. One notable exception to this generalization is authorship attribution, where high frequency function words are highly predictive. As I will show in the next section, __tf-idf__ can also be used to cull machine learning feature lists and, often, building a model with fewer features is desirable.
 
 ### Potential Variations of Tf-idf
 
@@ -774,7 +823,7 @@ Since the basic idea of __tf-idf__ is to weight term counts against the number o
 
 Similarly, the __tf-idf__ transformation can be applied to n-grams. A Fivethirtyeight.com post from March 2016 called ["These Are The Phrases Each GOP Candidate Repeats Most"](https://fivethirtyeight.com/features/these-are-the-phrases-each-gop-candidate-repeats-most/) uses such an approach to perform the inverse-document frequency calculation on phrases rather than words. 
 
-### Tf-idf Compared with Common Alternatives 
+### Tf-idf and Common Alternatives
 
 __Tf-idf__ can be compared with several other methods of "getting at" the meaningful term features in a collections of texts. It can also be contrasted with more sophisticated unsupervised sorting methods like topic modeling and clustering.
 
